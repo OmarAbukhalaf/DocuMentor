@@ -67,9 +67,9 @@ def split_text(text):
 
 def index_docs(texts):
     ids = [str(i) for i in range(len(texts))]
-    embeddings_list = embeddings.embed_documents(texts)  
+    embeddings_list = embeddings.embed_documents(texts)
     collection.add(ids=ids, documents=texts, embeddings=embeddings_list)
-
+    
 def retrieve_docs(query):
     cache_key = f"retrieved_docs:{query}"  
 
@@ -81,7 +81,7 @@ def retrieve_docs(query):
     print("Cache miss! Retrieving documents.")
     results = collection.query(
         query_embeddings=[embeddings.embed_query(query)],
-        n_results=3
+        n_results=2
     )
     retrieved_docs = [doc for doc in results['documents'][0] if doc]
 
@@ -138,14 +138,11 @@ for chat in st.session_state.chat_history:
 question = st.chat_input("Ask a question...")
 start=time.time()
 if question:
-    print("11111111111111111111")
     with st.chat_message("user"):
         st.write(question)  
 
-    print("22222222222222222222222")
     related_documents = retrieve_docs(question)
     print("Retrieved docs:", related_documents)
-    print("33333333333333333333333")
     answer = answer_question(question, related_documents)
     print(f"Time: {time.time() - start} seconds")
     st.session_state.chat_history.append({"role": "user", "content": question})
