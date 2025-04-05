@@ -2,19 +2,36 @@
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue)
 ![ChromaDB](https://img.shields.io/badge/VectorDB-ChromaDB-purple)
-![CLIP](https://img.shields.io/badge/Embedding-CLIP-orange)
+![Ollama](https://img.shields.io/badge/LLM-Gemma3%3A4b-orange)
+![Redis](https://img.shields.io/badge/Cache-Redis-red)
 ![License: MIT](https://img.shields.io/badge/License-MIT-green)
 
-> **DocuMentor** is a Multimodal Retrieval-Augmented Generation (RAG) system that lets you chat with documents — extracting and understanding both **text and images** from PDFs using CLIP embeddings and ChromaDB.
+> **DocuMentor** is a multimodal RAG (Retrieval-Augmented Generation) assistant that allows users to ask questions about uploaded PDFs — extracting both **text and image content** and generating intelligent answers with LLMs.
 
 ---
 
 ## 📌 Features
 
 - 📄 Upload and parse PDFs (text + image extraction)
-- 🧠 Use [CLIP](https://huggingface.co/sentence-transformers/clip-ViT-B-32) for multimodal embeddings
-- 🗂️ Store and query embeddings using [ChromaDB](https://www.trychroma.com/)
-- 🗣️ Ask questions — receive concise, context-aware answers
-- 🧪 Built to run easily on **Google Colab** (no frontend required)
+- 🧠 Multimodal understanding using OCR on images
+- 💬 Ask questions — receive concise, context-rich answers
+- ⚡ Redis-based caching for fast repeated queries
+- 🗂️ Vector similarity retrieval with ChromaDB
+- 🧠 Answer generation using **Gemma 3 (4B)** LLM via **Ollama**
+
+---
+
+## 🧱 Tech Stack
+
+| Component         | Library/Tool                          |
+|------------------|----------------------------------------|
+| PDF Parsing       | `unstructured`, `pdfminer.six`         |
+| Image Text        | `Pillow`, `pytesseract`                |
+| Text Splitting    | `langchain_text_splitters`             |
+| Embeddings        | `OllamaEmbeddings (llama3.2)`          |
+| Vector Store      | `chromadb`                             |
+| Caching Layer     | `redis`                                |
+| Language Model    | `Gemma3:4b via Ollama`                 |
+| Interface         | `Streamlit`                            |
 
 ---
